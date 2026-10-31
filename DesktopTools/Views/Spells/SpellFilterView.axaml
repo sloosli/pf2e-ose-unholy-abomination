@@ -1,0 +1,123 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DesktopTools.ViewModels.Spells"
+             xmlns:userControls="clr-namespace:DesktopTools.UserControls"
+             xmlns:enums="clr-namespace:Pf2eUtils.Common.Enums;assembly=Pf2eUtils"
+             xmlns:models="clr-namespace:Pf2eUtils.Spells.Models;assembly=Pf2eUtils"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="600"
+             x:Class="DesktopTools.Views.Spells.SpellFilterView"
+             x:DataType="vm:SpellFilterViewModel">
+
+    <Border Background="{DynamicResource SystemRegionBrush}"
+            BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="8"
+            Padding="20">
+
+        <DockPanel LastChildFill="True">
+
+            <Grid DockPanel.Dock="Bottom"
+                  ColumnDefinitions="*, *"
+                  Margin="0,20,0,0">
+
+                <Button Grid.Column="0"
+                        Content="Сбросить"
+                        Command="{Binding ResetFilterCommand}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="36" />
+
+                <Button Grid.Column="1"
+                        Content="Применить"
+                        Command="{Binding ApplyFilterCommand}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="36" />
+            </Grid>
+
+            <ScrollViewer>
+                <StackPanel Spacing="20">
+                    <TextBlock Text="Фильтр заклинаний"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10" />
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Тип заклинания"
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <RadioButton GroupName="SpellTypeGroup"
+                                     IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static models:SpellType.Cantrip}}"
+                                     Content="Cantrip" />
+                        <RadioButton GroupName="SpellTypeGroup"
+                                     IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static models:SpellType.Focus}}"
+                                     Content="Focus" />
+                        <RadioButton GroupName="SpellTypeGroup"
+                                     IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static models:SpellType.Spell}}"
+                                     Content="Spell" />
+
+                    </StackPanel>
+
+                    <Separator Margin="0,5" />
+
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="Ранг заклинания"
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        
+                        <Grid ColumnDefinitions="*, Auto, *">
+
+                            <NumericUpDown Grid.Column="0"
+                                           Minimum="1"
+                                           Maximum="10"
+                                           Increment="1"
+                                           FormatString="0"
+                                           Value="{Binding MinRank, Mode=TwoWay}"
+                                           HorizontalAlignment="Stretch" />
+
+                            <TextBlock Grid.Column="1"
+                                       Text="—"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0"
+                                       Foreground="Gray" />
+
+                            <NumericUpDown Grid.Column="2"
+                                           Minimum="1"
+                                           Maximum="10"
+                                           Increment="1"
+                                           FormatString="0"
+                                           Value="{Binding MaxRank, Mode=TwoWay}"
+                                           HorizontalAlignment="Stretch" />
+                        </Grid>
+                    </StackPanel>
+
+                    <Separator Margin="0,5" />
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Редкость (Rarity)"
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <userControls:EnumCheckboxGroup EnumType="{x:Type enums:Rarity}"
+                                                        SelectedValues="{Binding Rarity, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <Separator Margin="0,5" />
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Магическая традиция (Tradition)"
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <userControls:EnumCheckboxGroup EnumType="{x:Type models:MagicTradition}"
+                                                        SelectedValues="{Binding Tradition, Mode=TwoWay}" />
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,21 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="DesktopTools.App"
+             xmlns:local="using:DesktopTools"
+             xmlns:converters="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
+             xmlns:userConverters="clr-namespace:DesktopTools.Converters"
+             RequestedThemeVariant="Default">
+
+    <Application.Resources>
+        <converters:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+        <userConverters:ComparisonConverter x:Key="ComparisonConverter" />
+    </Application.Resources>
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+
+</Application>

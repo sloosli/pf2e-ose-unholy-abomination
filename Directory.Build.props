@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <!-- Определяем корневую папку для вывода -->
+    <BaseAppendTargetFrameworkToOutputPath>false</BaseAppendTargetFrameworkToOutputPath>
+    
+    <!-- Путь для готовой сборки (bin) -->
+    <OutputPath>$(MSBuildThisFileDirectory)BuildOutput\$(Configuration)\</OutputPath>
+    
+    <!-- Путь для промежуточных файлов (obj) -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)BuildOutput\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>

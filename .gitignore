@@ -1,0 +1,8 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/BuildOutput
+/.idea
+/TtrpgTools.sln.DotSettings.user

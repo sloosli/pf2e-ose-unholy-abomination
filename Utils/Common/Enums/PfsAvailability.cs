@@ -1,4 +1,4 @@
-namespace Pf2eUtils.Common.Enums;
+namespace Utils.Common.Enums;
 
 public enum PfsAvailability
 {

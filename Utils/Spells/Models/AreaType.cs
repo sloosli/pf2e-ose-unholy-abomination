@@ -1,4 +1,4 @@
-namespace Pf2eUtils.Spells.Models;
+namespace Utils.Spells.Models;
 
 public enum AreaType
 {

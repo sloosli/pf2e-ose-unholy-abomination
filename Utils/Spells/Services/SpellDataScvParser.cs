@@ -1,9 +1,9 @@
 using System.Text;
 using System.Text.RegularExpressions;
-using Pf2eUtils.Common.Enums;
-using Pf2eUtils.Spells.Models;
+using Utils.Common.Enums;
+using Utils.Spells.Models;
 
-namespace Pf2eUtils.Spells.Services;
+namespace Utils.Spells.Services;
 
 internal static partial class SpellDataCsvParser
 {

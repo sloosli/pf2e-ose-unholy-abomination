@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:DesktopTools.ViewModels.Spells"
              xmlns:userControls="clr-namespace:DesktopTools.UserControls"
-             xmlns:enums="clr-namespace:Pf2eUtils.Common.Enums;assembly=Pf2eUtils"
-             xmlns:models="clr-namespace:Pf2eUtils.Spells.Models;assembly=Pf2eUtils"
+             xmlns:enums="clr-namespace:Utils.Common.Enums;assembly=Utils"
+             xmlns:models="clr-namespace:Utils.Spells.Models;assembly=Utils"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="600"
              x:Class="DesktopTools.Views.Spells.SpellFilterView"
              x:DataType="vm:SpellFilterViewModel">

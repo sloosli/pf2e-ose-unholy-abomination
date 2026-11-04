@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using DynamicData;
-using Pf2eUtils.Spells.Models;
-using Pf2eUtils.Spells.Services;
 using ReactiveUI;
+using Utils.Spells.Models;
+using Utils.Spells.Services;
 
 namespace DesktopTools.ViewModels.Spells;
 

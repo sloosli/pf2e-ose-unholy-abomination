@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Pf2eUtils.Common.Enums;
-using Pf2eUtils.Spells.Models;
+using Utils.Common.Enums;
+using Utils.Spells.Models;
 
 namespace DesktopTools.ViewModels.Spells;
 

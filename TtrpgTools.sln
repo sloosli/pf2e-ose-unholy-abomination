@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pf2eUtils", "Pf2eUtils\Pf2eUtils.csproj", "{328A587D-6553-4FFB-BE05-C4C3960CAEA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{328A587D-6553-4FFB-BE05-C4C3960CAEA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopTools", "DesktopTools\DesktopTools.csproj", "{BA3EB641-6D7E-4315-905F-78E539F8CFD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{82CF2B07-A0B3-4501-9EFF-F772F938AFA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

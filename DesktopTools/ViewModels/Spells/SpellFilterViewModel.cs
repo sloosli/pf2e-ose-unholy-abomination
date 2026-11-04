@@ -1,9 +1,9 @@
 using System;
 using System.Windows.Input;
-using Pf2eUtils.Common.Enums;
-using Pf2eUtils.Spells;
-using Pf2eUtils.Spells.Models;
 using ReactiveUI;
+using Utils.Common.Enums;
+using Utils.Spells;
+using Utils.Spells.Models;
 
 namespace DesktopTools.ViewModels.Spells;
 
@@ -71,7 +71,7 @@ public class SpellFilterViewModel : ViewModelBase
 
     private void ResetToDefaults()
     {
-        Rarity = [Pf2eUtils.Common.Enums.Rarity.Common];
+        Rarity = [Constants.DefaultRarity];
         Tradition = [];
         Type = Constants.DefaultSpellType;
         MinRank = Constants.MinRank;

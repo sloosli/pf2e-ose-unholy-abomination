@@ -1,6 +1,6 @@
-using Pf2eUtils.Common.Enums;
+using Utils.Common.Enums;
 
-namespace Pf2eUtils.Spells.Models;
+namespace Utils.Spells.Models;
 
 public class SpellFilterDto
 {

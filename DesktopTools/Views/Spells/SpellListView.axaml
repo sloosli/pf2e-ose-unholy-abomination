@@ -1,0 +1,165 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DesktopTools.ViewModels.Spells"
+             xmlns:spells="clr-namespace:DesktopTools.Views.Spells"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="DesktopTools.Views.Spells.SpellListView"
+             x:DataType="vm:SpellsListViewModel">
+    <Grid ColumnDefinitions=" *, Auto" Margin="5">
+        <Border Grid.Column="0"
+                Background="{DynamicResource SystemRegionBrush}"
+                BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="10">
+            <Grid ColumnDefinitions="1*, 2*" Margin="0,0,10,0">
+
+                <!-- Колонка 1: Генератор случайного заклинания -->
+                <Border Grid.Column="0"
+                        Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="5,0,0,0"
+                        Padding="5">
+                    <Grid RowDefinitions="Auto, *">
+
+                        <Button Grid.Row="0"
+                                Command="{Binding GetRandomSpellCommand}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                MinHeight="36"
+                                Margin="0,0,0,15">
+                            <TextBlock Text="Выбрать случайное заклинание"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center" />
+                        </Button>
+
+                        <Grid Grid.Row="1">
+                            <!-- Заглушка -->
+                            <TextBlock x:CompileBindings="False"
+                                       Text="Нажмите кнопку выше, чтобы сгенерировать случайное заклинание из отфильтрованного списка."
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Foreground="Gray"
+                                       TextWrapping="Wrap"
+                                       IsVisible="{Binding RandomSpell, Converter={x:Static ObjectConverters.IsNull}}" />
+
+                            <!-- Карточка заклинания -->
+                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                          x:CompileBindings="False"
+                                          IsVisible="{Binding RandomSpell, Converter={x:Static ObjectConverters.IsNotNull}}">
+
+                                <StackPanel Spacing="12">
+                                    <TextBlock Text="{Binding RandomSpell.Name}" FontSize="22"
+                                               FontWeight="Bold"
+                                               Foreground="{DynamicResource SystemControlHighlightAccentBrush}"
+                                               TextWrapping="Wrap" />
+
+                                    <Border Background="{DynamicResource SystemControlTransientBackgroundBrush}"
+                                            CornerRadius="4" Padding="8,4" HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding RandomSpell.DisplayRank}"
+                                                   FontWeight="SemiBold" FontSize="13" />
+                                    </Border>
+
+                                    <StackPanel Spacing="4">
+                                        <Grid ColumnDefinitions="100, *">
+                                            <TextBlock Grid.Column="0" Text="Тип: " FontWeight="SemiBold"
+                                                       Foreground="Gray" />
+                                            <TextBlock Grid.Column="1" Text="{Binding RandomSpell.Type}" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="100, *">
+                                            <TextBlock Grid.Column="0" Text="Редкость: " FontWeight="SemiBold"
+                                                       Foreground="Gray" />
+                                            <TextBlock Grid.Column="1" Text="{Binding RandomSpell.Rarity}" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="100, *">
+                                            <TextBlock Grid.Column="0" Text="Традиции: " FontWeight="SemiBold"
+                                                       Foreground="Gray" />
+                                            <TextBlock Grid.Column="1" Text="{Binding RandomSpell.TraditionsDisplay}"
+                                                       TextWrapping="Wrap" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="100, *"
+                                              IsVisible="{Binding RandomSpell.DefenseDisplay, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                            <TextBlock Grid.Column="0" Text="Защита: " FontWeight="SemiBold"
+                                                       Foreground="Gray" />
+                                            <TextBlock Grid.Column="1" Text="{Binding RandomSpell.DefenseDisplay}" />
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <Separator Margin="0,5" />
+
+                                    <StackPanel Spacing="6">
+                                        <TextBlock Text="Описание:" FontWeight="SemiBold" FontSize="14" />
+                                        <TextBlock Text="{Binding RandomSpell.Summary}"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                                   FontSize="13"
+                                                   LineHeight="18" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- Колонка 2: Список отфильтрованных заклинаний -->
+                <Border Grid.Column="1"
+                        Background="{DynamicResource SystemRegionBrush}"
+                        BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,5,0"
+                        Padding="10">
+
+                    <Grid RowDefinitions="Auto, *">
+                        <TextBlock Grid.Row="0"
+                                   Text="{Binding Spells.Count, StringFormat='Найдено заклинаний: {0}'}"
+                                   FontWeight="SemiBold"
+                                   Margin="5,5,5,10" />
+
+                        <ListBox Grid.Row="1" ItemsSource="{Binding Spells}" Background="Transparent">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="vm:SpellItemViewModel">
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <StackPanel Grid.Column="0" Spacing="4">
+                                            <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="SemiBold" />
+                                            <WrapPanel Orientation="Horizontal">
+                                                <TextBlock Text="Тип: " Foreground="Gray" FontSize="12" />
+                                                <TextBlock Text="{Binding Type}" Margin="0,0,12,0" FontSize="12" />
+                                                <TextBlock Text="Редкость: " Foreground="Gray" FontSize="12" />
+                                                <TextBlock Text="{Binding Rarity}" Margin="0,0,12,0" FontSize="12" />
+                                                <TextBlock Text="Традиции: " Foreground="Gray" FontSize="12" />
+                                                <TextBlock Text="{Binding TraditionsDisplay}" Margin="0,0,12,0"
+                                                           FontSize="12" />
+                                                <StackPanel Orientation="Horizontal"
+                                                            IsVisible="{Binding DefenseDisplay, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                                    <TextBlock Text="Защита: " Foreground="Gray" FontSize="12" />
+                                                    <TextBlock Text="{Binding DefenseDisplay}" FontSize="12" />
+                                                </StackPanel>
+                                            </WrapPanel>
+                                        </StackPanel>
+                                        <Border Grid.Column="1"
+                                                Background="{DynamicResource SystemControlHighlightAccentBrush}"
+                                                CornerRadius="4" Padding="6,2" VerticalAlignment="Center"
+                                                Margin="5,0,0,0">
+                                            <TextBlock Text="{Binding DisplayRank}" Foreground="White" FontSize="11"
+                                                       FontWeight="Bold" />
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <!-- Фильтры -->
+        <spells:SpellFilterView Grid.Column="1" Width="380" DataContext="{Binding SpellFilter}" />
+    </Grid>
+</UserControl>

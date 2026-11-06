@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DesktopTools.ViewModels.LootTables"
+             xmlns:models="clr-namespace:Utils.LootTables.TreasureModels;assembly=Utils"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="DesktopTools.Views.LootTables.TreasureGeneratorView"
+             x:DataType="vm:TreasureGeneratorViewModel">
+    <Grid>
+        <!-- Список таблиц пустой -->
+        <Border IsVisible="{Binding !HasTables}"
+                Background="{DynamicResource SystemRegionBrush}"
+                Margin="10" CornerRadius="8" Padding="20">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                <TextBlock Text="Список таблиц пуст" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                <TextBlock Text="Перейдите на вкладку 'Главная' и выберите JSON файлы с таблицами сокровищ."
+                           Foreground="Gray" TextAlignment="Center" TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+
+        <!-- Таблицы успешно загружены -->
+        <Grid IsVisible="{Binding HasTables}" ColumnDefinitions="2*, 1*" Margin="5">
+
+            <!-- Колонка 1: Результаты броска -->
+            <Border Grid.Column="0"
+                    Background="{DynamicResource SystemRegionBrush}"
+                    BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
+                    BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,5,0">
+                <Grid RowDefinitions="Auto, *">
+                    <TextBlock Grid.Row="0" Text="Результат генерации сокровищ" FontSize="18" FontWeight="Bold"
+                               Margin="0,0,0,10" />
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Spacing="15">
+                            <!-- Заглушка -->
+                            <TextBlock Text="Выберите таблицу справа, чтобы совершить бросок кубов вероятностей."
+                                       IsVisible="{Binding LastGenerationResult, Converter={x:Static ObjectConverters.IsNull}}"
+                                       Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Margin="0,50,0,0" />
+
+                            <!-- Отображение выпавших групп лута -->
+                            <ItemsControl ItemsSource="{Binding LastGenerationResult.Groups}"
+                                          IsVisible="{Binding LastGenerationResult, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="models:LootGroup">
+                                        <Border Background="{DynamicResource SystemControlTransientBackgroundBrush}"
+                                                CornerRadius="6" Padding="10" Margin="0,0,0,8">
+                                            <ItemsControl ItemsSource="{Binding ExtractedLoot}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate x:DataType="models:GeneratedLootItem">
+                                                        <Grid ColumnDefinitions="*, Auto" Margin="0,2">
+                                                            <TextBlock Grid.Column="0"
+                                                                       Text="{Binding LootType}"
+                                                                       FontWeight="Medium" FontSize="14" />
+                                                            <TextBlock Grid.Column="1"
+                                                                       Text="{Binding RolledQuantity, StringFormat='x{0}'}"
+                                                                       FontWeight="Bold" />
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Колонка 2: Список доступных таблиц -->
+            <Border Grid.Column="1"
+                    Background="{DynamicResource SystemRegionBrush}"
+                    BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
+                    BorderThickness="1" CornerRadius="8" Padding="10" Margin="5,0,0,0">
+                <Grid RowDefinitions="Auto, Auto, *">
+                    <Button Grid.Column="0"
+                            Content="Бросок по таблице"
+                            Padding="8,4"
+                            Margin="5,0,0,10"
+                            FontSize="14"
+                            Command="{Binding RollLootCommand}"
+                            IsEnabled="{Binding SelectedTable, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                    <TextBlock Grid.Row="1" Text="Доступные таблицы OSE" FontSize="16" FontWeight="SemiBold"
+                               Margin="5,0,0,10" />
+
+                    <ListBox Grid.Row="2" ItemsSource="{Binding AvailableTables}"
+                             SelectedItem="{Binding SelectedTable}" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:TreasureTableInfo">
+                                <Grid ColumnDefinitions="*, Auto" Margin="0,2">
+                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding AverageValue}" FontSize="11" Foreground="Gray"
+                                                   IsVisible="{Binding AverageValue, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

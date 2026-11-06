@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:spells="clr-namespace:DesktopTools.Views.Spells"
+        xmlns:lootTables="clr-namespace:DesktopTools.Views.LootTables"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="1200" Height="800"
+        x:Name="RootWindow"
         x:Class="DesktopTools.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -17,17 +19,38 @@
 
     <TabControl Margin="10">
 
+        <!-- Вкладка Главная с выбором конфигурационных файлов таблиц -->
         <TabItem Header="Главная">
-            <Grid Background="{DynamicResource SystemRegionBrush}">
-                <TextBlock Text="Эта страница пока пустая"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="16" />
+            <Grid Background="{DynamicResource SystemRegionBrush}" Margin="20">
+                <StackPanel Spacing="15" MaxWidth="600" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Управление конфигурационными файлами" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    
+                    <Button Content="Загрузить файлы таблиц сокровищ (.json)" 
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="12"
+                            Command="{Binding SelectLootFilesCommand}"
+                            CommandParameter="{Binding ElementName=RootWindow}"/>
+
+                    <TextBlock Text="Загруженные файлы:" FontWeight="SemiBold" Margin="0,10,0,0"
+                               IsVisible="{Binding SelectedLootFiles.Count}"/>
+                    
+                    <ListBox ItemsSource="{Binding SelectedLootFiles}" MaxHeight="200" Background="Transparent"
+                             IsVisible="{Binding SelectedLootFiles.Count}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="12" Foreground="DimGray"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
             </Grid>
         </TabItem>
 
         <TabItem Header="Spells">
             <spells:SpellListView DataContext="{Binding SpellsListTabs}" />
+        </TabItem>
+
+        <TabItem Header="Loot Generator">
+            <lootTables:TreasureGeneratorView DataContext="{Binding TreasureTabs}" />
         </TabItem>
 
     </TabControl>

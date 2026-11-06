@@ -3,7 +3,7 @@ using Utils.LootTables.TreasureModels;
 
 namespace Utils.LootTables.Services;
 
-internal class TreasureGeneratorService
+internal class TreasureGeneratorService : ITreasureGeneratorService
 {
     private readonly ITreasureTableRepository _repository;
     private readonly IDiceRoller _diceRoller;

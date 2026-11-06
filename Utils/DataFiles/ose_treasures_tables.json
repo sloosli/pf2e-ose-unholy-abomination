@@ -1,0 +1,925 @@
+{
+  "Tables": {
+    "Type A": {
+      "AverageValue": "18,000gp average",
+      "Rows": [
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "1d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 20,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 35,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "2d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "1d2 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "6d6"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "6d6"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "magic items",
+              "DiceFormula": "3"
+            }
+          ]
+        }
+      ]
+    },
+    "Type B": {
+      "AverageValue": "2,000gp average",
+      "Rows": [
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "1d8 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d3 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d6"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d6"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "magic sword, suit of armour or weapon",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type C": {
+      "AverageValue": "1,000gp average",
+      "Rows": [
+        {
+          "ChancePercent": 20,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "1d12 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d4"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d4"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "magic items",
+              "DiceFormula": "2"
+            }
+          ]
+        }
+      ]
+    },
+    "Type D": {
+      "AverageValue": "3,900gp average",
+      "Rows": [
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "1d8 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 15,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d12 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 60,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d8"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d8"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 15,
+          "ContentBundle": [
+            {
+              "LootType": "magic items",
+              "DiceFormula": "2"
+            },
+            {
+              "LootType": "potion",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type E": {
+      "AverageValue": "2,300gp average",
+      "Rows": [
+        {
+          "ChancePercent": 5,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "1d10 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d12 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d8 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d10"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d10"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "magic items",
+              "DiceFormula": "3"
+            },
+            {
+              "LootType": "scroll",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type F": {
+      "AverageValue": "7,700gp average",
+      "Rows": [
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "2d10 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 20,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d8 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 45,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d12 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "1d3 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 20,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "2d12"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d12"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "magic items (not weapons)",
+              "DiceFormula": "3"
+            },
+            {
+              "LootType": "potion",
+              "DiceFormula": "1"
+            },
+            {
+              "LootType": "scroll",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type G": {
+      "AverageValue": "23,000gp average",
+      "Rows": [
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "1d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "3d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d10"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 35,
+          "ContentBundle": [
+            {
+              "LootType": "magic items",
+              "DiceFormula": "4"
+            },
+            {
+              "LootType": "scroll",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type H": {
+      "AverageValue": "60,000gp average",
+      "Rows": [
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "3d8 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d100 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d4 * 10000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d6 * 10000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "5d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": " pieces of jewellery",
+              "DiceFormula": "1d4 * 10"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 15,
+          "ContentBundle": [
+            {
+              "LootType": "magic items",
+              "DiceFormula": "4"
+            },
+            {
+              "LootType": "potion",
+              "DiceFormula": "1"
+            },
+            {
+              "LootType": "scroll",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type I": {
+      "AverageValue": "11,000gp average",
+      "Rows": [
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "1d8 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "2d6"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "2d6"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 15,
+          "ContentBundle": [
+            {
+              "LootType": "magic item",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type J": {
+      "AverageValue": "25gp average",
+      "Rows": [
+        {
+          "ChancePercent": 25,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "1d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d3 * 1000"
+            }
+          ]
+        }
+      ]
+    },
+    "Type K": {
+      "AverageValue": "180gp average",
+      "Rows": [
+        {
+          "ChancePercent": 30,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d2 * 1000"
+            }
+          ]
+        }
+      ]
+    },
+    "Type L": {
+      "AverageValue": "240gp average",
+      "Rows": [
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d4"
+            }
+          ]
+        }
+      ]
+    },
+    "Type M": {
+      "AverageValue": "50,000gp average",
+      "Rows": [
+        {
+          "ChancePercent": 40,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "2d4 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "5d6 * 1000"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 55,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "5d4"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 45,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "2d6"
+            }
+          ]
+        }
+      ]
+    },
+    "Type N": {
+      "AverageValue": "0gp average, 2d4 potions",
+      "Rows": [
+        {
+          "ChancePercent": 40,
+          "ContentBundle": [
+            {
+              "LootType": "potions",
+              "DiceFormula": "2d4"
+            }
+          ]
+        }
+      ]
+    },
+    "Type O": {
+      "AverageValue": "0gp average, 1d4 scrolls",
+      "Rows": [
+        {
+          "ChancePercent": 50,
+          "ContentBundle": [
+            {
+              "LootType": "scrolls",
+              "DiceFormula": "1d4"
+            }
+          ]
+        }
+      ]
+    },
+    "Type P": {
+      "AverageValue": "0.1gp average",
+      "Rows": [
+        {
+          "ChancePercent": 100,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "3d8"
+            }
+          ]
+        }
+      ]
+    },
+    "Type Q": {
+      "AverageValue": "1gp average",
+      "Rows": [
+        {
+          "ChancePercent": 100,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "3d6"
+            }
+          ]
+        }
+      ]
+    },
+    "Type R": {
+      "AverageValue": "3gp average",
+      "Rows": [
+        {
+          "ChancePercent": 100,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "2d6"
+            }
+          ]
+        }
+      ]
+    },
+    "Type S": {
+      "AverageValue": "5gp average",
+      "Rows": [
+        {
+          "ChancePercent": 100,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "2d4"
+            }
+          ]
+        }
+      ]
+    },
+    "Type T": {
+      "AverageValue": "17gp average",
+      "Rows": [
+        {
+          "ChancePercent": 100,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "1d6"
+            }
+          ]
+        }
+      ]
+    },
+    "Type U": {
+      "AverageValue": "160gp average",
+      "Rows": [
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "cp",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 5,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 5,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d4"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 5,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d4"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 2,
+          "ContentBundle": [
+            {
+              "LootType": "magic item",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    },
+    "Type V": {
+      "AverageValue": "330gp average",
+      "Rows": [
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "sp",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 5,
+          "ContentBundle": [
+            {
+              "LootType": "ep",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "gp",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 5,
+          "ContentBundle": [
+            {
+              "LootType": "pp",
+              "DiceFormula": "1d100"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "gems",
+              "DiceFormula": "1d4"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 10,
+          "ContentBundle": [
+            {
+              "LootType": "pieces of jewellery",
+              "DiceFormula": "1d4"
+            }
+          ]
+        },
+        {
+          "ChancePercent": 5,
+          "ContentBundle": [
+            {
+              "LootType": "magic item",
+              "DiceFormula": "1"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

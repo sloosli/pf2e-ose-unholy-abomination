@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using DesktopTools.DesignServices;
+using DesktopTools.Services.DesignMocks;
+using DesktopTools.Services.Localization;
 using DesktopTools.ViewModels.LootTables;
 using DesktopTools.ViewModels.Spells;
 using DynamicData;
@@ -23,9 +24,9 @@ public class MainWindowViewModel : ViewModelBase
     public ObservableCollection<string> SelectedLootFiles { get; } = [];
 
     public ICommand SelectLootFilesCommand { get; }
-    
-    public MainWindowViewModel() 
-        : this(new DesignTreasureGeneratorService())
+    public ICommand SwitchLanguageCommand { get; }
+
+    public MainWindowViewModel() : this(new DesignTreasureGeneratorService())
     {
     }
 
@@ -38,6 +39,15 @@ public class MainWindowViewModel : ViewModelBase
         TreasureTabs = new TreasureGeneratorViewModel(_treasureService);
 
         SelectLootFilesCommand = ReactiveCommand.CreateFromTask<Window>(SelectLootFilesAsync);
+        SwitchLanguageCommand = ReactiveCommand.Create(ChangeLocalization);
+    }
+
+    private static void ChangeLocalization()
+    {
+        var current = LocalizationManager.Instance.CurrentCulture.Name;
+        LocalizationManager.Instance.CurrentCulture = current == "ru-RU"
+            ? new System.Globalization.CultureInfo("en-US")
+            : new System.Globalization.CultureInfo("ru-RU");
     }
 
     private async Task SelectLootFilesAsync(Window parentWindow)
@@ -48,9 +58,9 @@ public class MainWindowViewModel : ViewModelBase
 
         var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
-            Title = "Выберите JSON файлы таблиц сокровищ",
+            Title = LocalizationManager.Instance["FileManagerWindow"],
             AllowMultiple = true,
-            FileTypeFilter = [new FilePickerFileType("JSON файлы") { Patterns = ["*.json"] }]
+            FileTypeFilter = [new FilePickerFileType(LocalizationManager.Instance["JsonFiles"]) { Patterns = ["*.json"] }]
         });
 
         if (files.Count == 0)

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Utils.LootTables.Interfaces;
 using Utils.LootTables.TreasureModels;
 
-namespace DesktopTools.DesignServices;
+namespace DesktopTools.Services.DesignMocks;
 
 internal class DesignTreasureGeneratorService : ITreasureGeneratorService
 {

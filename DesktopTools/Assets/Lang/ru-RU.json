@@ -1,0 +1,34 @@
+{
+  "MainTabHeader": "Главная",
+  "ConfigManagementTitle": "Управление конфигурационными файлами",
+  "LoadLootFilesButton": "Загрузить файлы таблиц сокровищ (.json)",
+  "LoadedFilesTitle": "Загруженные файлы:",
+  "EmptyPageText": "Эта страница пока пустая",
+  "SpellsTabHeader": "Заклинания",
+  "LootGeneratorTabHeader": "Генератор лута",
+  
+  "FileManagerWindow": "Выберите файлы",
+  "JsonFiles": "JSON файлы",
+  
+  "ResetButton": "Сбросить",
+  "ApplyButton": "Применить",
+  "Description": "Описание",
+  
+  "Type": "Тип",
+  "Rarity": "Редкость",
+
+  "SpellFilter": "Фильтр заклинаний",
+  "SpellRank": "Ранг заклинания",
+  "SpellTradition": "Магическая традиция",
+  "SpellDefence": "Защита",
+  "SpellCount": "Найдено заклинаний",
+  "GetRandomSpellButton": "Выбрать случайное заклинание",
+  "GetRandomSpellToolTip": "Нажмите кнопку выше, чтобы сгенерировать случайное заклинание из отфильтрованного списка.",
+
+  "LootTablesEmptyToolTip": "Список таблиц пуст",
+  "LootTableEmptyLoadHelp": "Перейдите на вкладку 'Главная' и выберите JSON файлы с таблицами сокровищ.",
+  "LotGenerationResult": "Результат генерации сокровищ",
+  "LootGenerationToolTip": "Выберите таблицу справа, чтобы совершить бросок на сокровища.",
+  "LootGenerationButton": "Бросок по таблице",
+  "AvailableLootTables": "Доступные таблицы"
+}

@@ -70,7 +70,7 @@ public class SpellItemViewModel : ViewModelBase
             .Where(h => h >= filter.MinRank && h <= filter.MaxRank)
             .ToList();
 
-        DisplayRank = "Подходящие ранги: " + string.Join(", ", FilteredHeighten);
+        DisplayRank = string.Join(", ", FilteredHeighten);
     }
 
     public SpellItemViewModel(SpellItemViewModel baseModel, int rank)
@@ -81,7 +81,7 @@ public class SpellItemViewModel : ViewModelBase
         Type = baseModel.Type;
         TraditionsDisplay = baseModel.TraditionsDisplay;
         DefenseDisplay = baseModel.DefenseDisplay;
-        DisplayRank = $"Ранг: {rank}";
+        DisplayRank = $"{rank}";
         FilteredHeighten = baseModel.FilteredHeighten;
     }
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:spells="clr-namespace:DesktopTools.Views.Spells"
         xmlns:lootTables="clr-namespace:DesktopTools.Views.LootTables"
+        xmlns:localization="clr-namespace:DesktopTools.Services.Localization"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="1200" Height="800"
         x:Name="RootWindow"
@@ -19,37 +20,42 @@
 
     <TabControl Margin="10">
 
-        <!-- Вкладка Главная с выбором конфигурационных файлов таблиц -->
-        <TabItem Header="Главная">
-            <Grid Background="{DynamicResource SystemRegionBrush}" Margin="20">
-                <StackPanel Spacing="15" MaxWidth="600" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="Управление конфигурационными файлами" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    
-                    <Button Content="Загрузить файлы таблиц сокровищ (.json)" 
+        <TabItem Header="{localization:Localize MainTabHeader}">
+            <Grid ColumnDefinitions="*, Auto" Background="{DynamicResource SystemRegionBrush}" Margin="20">
+                <StackPanel Grid.Column="0" Spacing="15" MaxWidth="600" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <TextBlock Text="{localization:Localize ConfigManagementTitle}"
+                               FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
+
+                    <Button Content="{localization:Localize LoadLootFilesButton}"
                             HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="12"
                             Command="{Binding SelectLootFilesCommand}"
-                            CommandParameter="{Binding ElementName=RootWindow}"/>
+                            CommandParameter="{Binding ElementName=RootWindow}" />
 
-                    <TextBlock Text="Загруженные файлы:" FontWeight="SemiBold" Margin="0,10,0,0"
-                               IsVisible="{Binding SelectedLootFiles.Count}"/>
-                    
+                    <TextBlock Text="{localization:Localize LoadedFilesTitle}"
+                               FontWeight="SemiBold" Margin="0,10,0,0"
+                               IsVisible="{Binding SelectedLootFiles.Count}" />
+
                     <ListBox ItemsSource="{Binding SelectedLootFiles}" MaxHeight="200" Background="Transparent"
                              IsVisible="{Binding SelectedLootFiles.Count}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="12" Foreground="DimGray"/>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="12" Foreground="DimGray" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
+                <Button Grid.Column="1" Content="RU / EN"
+                        Command="{Binding SwitchLanguageCommand}"
+                        HorizontalAlignment="Right" Margin="10,10,20,0" Padding="10,5" />
             </Grid>
         </TabItem>
 
-        <TabItem Header="Spells">
+        <TabItem Header="{localization:Localize SpellsTabHeader}">
             <spells:SpellListView DataContext="{Binding SpellsListTabs}" />
         </TabItem>
 
-        <TabItem Header="Loot Generator">
+        <TabItem Header="{localization:Localize LootGeneratorTabHeader}">
             <lootTables:TreasureGeneratorView DataContext="{Binding TreasureTabs}" />
         </TabItem>
 

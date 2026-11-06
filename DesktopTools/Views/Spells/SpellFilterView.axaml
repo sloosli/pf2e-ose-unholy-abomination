@@ -6,6 +6,7 @@
              xmlns:userControls="clr-namespace:DesktopTools.UserControls"
              xmlns:enums="clr-namespace:Utils.Common.Enums;assembly=Utils"
              xmlns:models="clr-namespace:Utils.Spells.Models;assembly=Utils"
+             xmlns:localization="clr-namespace:DesktopTools.Services.Localization"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="600"
              x:Class="DesktopTools.Views.Spells.SpellFilterView"
              x:DataType="vm:SpellFilterViewModel">
@@ -23,7 +24,7 @@
                   Margin="0,20,0,0">
 
                 <Button Grid.Column="0"
-                        Content="Сбросить"
+                        Content="{localization:Localize ResetButton}"
                         Command="{Binding ResetFilterCommand}"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Center"
@@ -31,7 +32,7 @@
                         Height="36" />
 
                 <Button Grid.Column="1"
-                        Content="Применить"
+                        Content="{localization:Localize ApplyButton}"
                         Command="{Binding ApplyFilterCommand}"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Center"
@@ -41,13 +42,9 @@
 
             <ScrollViewer>
                 <StackPanel Spacing="20">
-                    <TextBlock Text="Фильтр заклинаний"
-                               FontSize="18"
-                               FontWeight="SemiBold"
-                               Margin="0,0,0,10" />
 
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Тип заклинания"
+                        <TextBlock Text="{localization:Localize SpellFilter}"
                                    FontWeight="Medium"
                                    Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         <RadioButton GroupName="SpellTypeGroup"
@@ -66,7 +63,7 @@
 
                     <StackPanel Spacing="8">
 
-                        <TextBlock Text="Ранг заклинания"
+                        <TextBlock Text="{localization:Localize SpellRank}"
                                    FontWeight="Medium"
                                    Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         
@@ -99,7 +96,7 @@
                     <Separator Margin="0,5" />
 
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Редкость (Rarity)"
+                        <TextBlock Text="{localization:Localize Rarity}"
                                    FontWeight="Medium"
                                    Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         <userControls:EnumCheckboxGroup EnumType="{x:Type enums:Rarity}"
@@ -109,7 +106,7 @@
                     <Separator Margin="0,5" />
 
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Магическая традиция (Tradition)"
+                        <TextBlock Text="{localization:Localize SpellTradition}"
                                    FontWeight="Medium"
                                    Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         <userControls:EnumCheckboxGroup EnumType="{x:Type models:MagicTradition}"

@@ -30,5 +30,11 @@
   "LotGenerationResult": "Treasure Generation Results",
   "LootGenerationToolTip": "Select a table on the right to roll the treasure dice.",
   "LootGenerationButton": "Roll on Table",
-  "AvailableLootTables": "Available Tables"
+  "AvailableLootTables": "Available Tables",
+  
+  "OtherTabHeader": "Other",
+  "ReincarnationTitle": "Reincarnation: New Race Selection",
+  "RollRaceButton": "Roll New Race",
+  "RaceResultLabel": "Reincarnation Result",
+  "RaceNameLabel": "Race"
 }

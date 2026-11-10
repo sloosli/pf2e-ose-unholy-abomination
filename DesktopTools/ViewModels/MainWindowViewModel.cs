@@ -7,10 +7,12 @@ using Avalonia.Platform.Storage;
 using DesktopTools.Services.DesignMocks;
 using DesktopTools.Services.Localization;
 using DesktopTools.ViewModels.LootTables;
+using DesktopTools.ViewModels.MiniTools;
 using DesktopTools.ViewModels.Spells;
 using DynamicData;
 using ReactiveUI;
 using Utils.LootTables.Interfaces;
+using Utils.MiniTools.Reincarnation;
 
 namespace DesktopTools.ViewModels;
 
@@ -20,23 +22,25 @@ public class MainWindowViewModel : ViewModelBase
 
     public SpellsListViewModel SpellsListTabs { get; }
     public TreasureGeneratorViewModel TreasureTabs { get; }
+    public ReincarnationViewModel ReincarnationVm { get; }
 
     public ObservableCollection<string> SelectedLootFiles { get; } = [];
 
     public ICommand SelectLootFilesCommand { get; }
     public ICommand SwitchLanguageCommand { get; }
 
-    public MainWindowViewModel() : this(new DesignTreasureGeneratorService())
+    public MainWindowViewModel() : this(new DesignTreasureGeneratorService(), new ReincarnationService())
     {
     }
 
-    public MainWindowViewModel(ITreasureGeneratorService treasureService)
+    public MainWindowViewModel(ITreasureGeneratorService treasureService, IReincarnationService reincarnationService)
     {
         SpellsListTabs = new SpellsListViewModel();
 
         _treasureService = treasureService;
 
         TreasureTabs = new TreasureGeneratorViewModel(_treasureService);
+        ReincarnationVm = new ReincarnationViewModel(reincarnationService);
 
         SelectLootFilesCommand = ReactiveCommand.CreateFromTask<Window>(SelectLootFilesAsync);
         SwitchLanguageCommand = ReactiveCommand.Create(ChangeLocalization);
@@ -60,7 +64,8 @@ public class MainWindowViewModel : ViewModelBase
         {
             Title = LocalizationManager.Instance["FileManagerWindow"],
             AllowMultiple = true,
-            FileTypeFilter = [new FilePickerFileType(LocalizationManager.Instance["JsonFiles"]) { Patterns = ["*.json"] }]
+            FileTypeFilter =
+                [new FilePickerFileType(LocalizationManager.Instance["JsonFiles"]) { Patterns = ["*.json"] }]
         });
 
         if (files.Count == 0)

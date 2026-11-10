@@ -30,5 +30,11 @@
   "LotGenerationResult": "Результат генерации сокровищ",
   "LootGenerationToolTip": "Выберите таблицу справа, чтобы совершить бросок на сокровища.",
   "LootGenerationButton": "Бросок по таблице",
-  "AvailableLootTables": "Доступные таблицы"
+  "AvailableLootTables": "Доступные таблицы",
+  
+  "OtherTabHeader": "Другое",
+  "ReincarnationTitle": "Реинкарнация: Выбор новой расы",
+  "RollRaceButton": "Бросить новую расу",
+  "RaceResultLabel": "Результат реинкарнации",
+  "RaceNameLabel": "Раса"
 }

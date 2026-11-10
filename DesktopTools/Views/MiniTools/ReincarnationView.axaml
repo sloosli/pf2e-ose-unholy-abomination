@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:localization="clr-namespace:DesktopTools.Services.Localization"
+             xmlns:vm="clr-namespace:DesktopTools.ViewModels.MiniTools"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="DesktopTools.Views.MiniTools.ReincarnationView"
+             x:DataType="vm:ReincarnationViewModel">
+    <Grid Margin="20" ColumnDefinitions="*, *" VerticalAlignment="Top">
+
+        <Border Grid.Column="0"
+                Background="{DynamicResource SystemRegionBrush}"
+                BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Padding="20"
+                Margin="0,0,10,0">
+            <StackPanel Spacing="15">
+                <TextBlock Text="{localization:Localize ReincarnationTitle}"
+                           FontSize="18"
+                           FontWeight="Bold" />
+
+                <Button Content="{localization:Localize RollRaceButton}"
+                        Command="{Binding RollRaceCommand}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Padding="12" />
+
+                <Separator Margin="0,10"
+                           IsVisible="{Binding CurrentResult, Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+                <!-- Блок вывода результатов броска -->
+                <StackPanel Spacing="10"
+                            IsVisible="{Binding CurrentResult, Converter={x:Static ObjectConverters.IsNotNull}}">
+                    <TextBlock Text="{localization:Localize RaceResultLabel}"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource SystemControlHighlightAccentBrush}" />
+
+                    <Grid ColumnDefinitions="100, *" Margin="0,4">
+                        <TextBlock Grid.Column="0"
+                                   Text="{localization:Localize RaceNameLabel}"
+                                   Foreground="Gray"
+                                   FontWeight="Medium" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding CurrentResult}"
+                                   FontSize="15"
+                                   FontWeight="Bold" />
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="10,0,0,0" />
+    </Grid>
+</UserControl>

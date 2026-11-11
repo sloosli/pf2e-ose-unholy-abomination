@@ -28,11 +28,13 @@ public class TreasureGeneratorViewModel : ViewModelBase
         set => NotifySetValue(() => SelectedTable, value);
     }
 
-    public GeneratedTreasure? LastGenerationResult
+    public bool IsLootGenerated
     {
-        get => NotifyGetValue(() => LastGenerationResult);
-        set => NotifySetValue(() => LastGenerationResult, value);
+        get => NotifyGetValue(() => IsLootGenerated);
+        set => NotifySetValue(() => IsLootGenerated, value);
     }
+
+    public ObservableCollection<LootGroupViewModel> GeneratedGroups { get; } = [];
 
     public ICommand RollLootCommand { get; }
 
@@ -59,7 +61,18 @@ public class TreasureGeneratorViewModel : ViewModelBase
         if (SelectedTable == null)
             return;
 
-        if (_treasureService.TryGenerate(SelectedTable.Name, out var result))
-            LastGenerationResult = result;
+        GeneratedGroups.Clear();
+
+        if (!_treasureService.TryGenerate(SelectedTable.Name, out var result) || result == null)
+        {
+            IsLootGenerated = false;
+            return;
+        }
+
+        foreach (var group in result.Groups)
+        {
+            IsLootGenerated = true;
+            GeneratedGroups.Add(new LootGroupViewModel(group));
+        }
     }
 }

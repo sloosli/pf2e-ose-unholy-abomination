@@ -42,6 +42,11 @@ internal sealed class LocalizationManager : INotifyPropertyChanged
         LoadCulture(_currentCulture);
     }
 
+    public string GetByEnum<T>(T key) where T : Enum
+    {
+        return this[key.ToString()];
+    }
+
     private void OnPropertyChanged(string propertyName = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

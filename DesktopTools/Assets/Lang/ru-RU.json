@@ -31,10 +31,21 @@
   "LootGenerationToolTip": "Выберите таблицу справа, чтобы совершить бросок на сокровища.",
   "LootGenerationButton": "Бросок по таблице",
   "AvailableLootTables": "Доступные таблицы",
-  
+  "RollInfoFormat": "Шанс: {0}% | Бросок: {1}",
+
   "OtherTabHeader": "Другое",
   "ReincarnationTitle": "Реинкарнация: Выбор новой расы",
   "RollRaceButton": "Бросить новую расу",
   "RaceResultLabel": "Результат реинкарнации",
-  "RaceNameLabel": "Раса"
+  "RaceNameLabel": "Раса",
+
+  "Cp": "Мм",
+  "Sp": "См",
+  "Ep": "Эм",
+  "Gp": "Зм",
+  "Pp": "Пм",
+  "Gems": "Камни",
+  "Jewellery": "Ювелир. Украшения",
+  "Scrolls": "Свитки",
+  "Other": "Другое"
 }

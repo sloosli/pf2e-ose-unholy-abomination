@@ -1,4 +1,5 @@
 using Utils.LootTables.Interfaces;
+using Utils.LootTables.Services.Processors;
 using Utils.LootTables.TreasureModels;
 
 namespace Utils.LootTables.Services;
@@ -7,15 +8,18 @@ internal class TreasureGeneratorService : ITreasureGeneratorService
 {
     private readonly ITreasureTableRepository _repository;
     private readonly IDiceRoller _diceRoller;
+    private readonly List<ILootProcessor> _lootProcessors;
     private readonly Random _random;
 
     public TreasureGeneratorService(
         ITreasureTableRepository repository,
         IDiceRoller diceRoller,
+        IEnumerable<ILootProcessor> lootProcessors,
         Random? random = null)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _diceRoller = diceRoller ?? throw new ArgumentNullException(nameof(diceRoller));
+        _lootProcessors = lootProcessors.ToList();
         _random = random ?? new Random();
     }
 
@@ -45,24 +49,25 @@ internal class TreasureGeneratorService : ITreasureGeneratorService
         if (tableDto?.Rows == null)
             return false;
 
-        var triggeredGroups = new List<LootGroup>();
-        foreach (var row in tableDto.Rows)
-        {
-            var percentileRoll = _random.Next(1, 101);
-
-            if (percentileRoll > row.ChancePercent)
-                continue;
-
-            var groupItems = row.ContentBundle
-                .Select(x => new GeneratedLootItem(x.LootType, _diceRoller.Roll(x.DiceFormula)))
-                .Where(x => x.RolledQuantity > 0)
-                .ToList();
-
-            if (groupItems.Count > 0)
+        var triggeredGroups = tableDto.Rows
+            .Select(x => new
             {
-                triggeredGroups.Add(new LootGroup(groupItems, row.ChancePercent, percentileRoll));
-            }
-        }
+                PercentileRoll = _random.Next(1, 101),
+                Row = x
+            })
+            .Where(x => x.PercentileRoll <= x.Row.ChancePercent)
+            .SelectMany(x => x.Row.ContentBundle
+                .Select(y => new
+                {
+                    RawLootType = y.LootType,
+                    LootTypeEnum = LootTypeExtensions.FromString(y.LootType),
+                    RolledQuantity = _diceRoller.Roll(y.DiceFormula)
+                })
+                .Where(y => y.RolledQuantity > 0)
+                .Select(y =>
+                    GetLootSpecificLootListByType(y.LootTypeEnum, y.RawLootType, y.RolledQuantity, x.Row.ChancePercent,
+                        x.PercentileRoll)))
+            .ToList();
 
         treasure = new GeneratedTreasure(
             TableName: tableName,
@@ -70,5 +75,25 @@ internal class TreasureGeneratorService : ITreasureGeneratorService
         );
 
         return true;
+    }
+
+    private LootGroup GetLootSpecificLootListByType(LootType lootType,
+        string rawLootType,
+        int rolledQuantity,
+        int chancePercentile,
+        int percentileRow)
+    {
+        var matchingProcessor = _lootProcessors.FirstOrDefault(p => p.CanProcess(lootType));
+
+        if (matchingProcessor != null)
+            return matchingProcessor.Process(lootType, rolledQuantity, chancePercentile, percentileRow);
+
+        var displayString = lootType == LootType.Other ? rawLootType : lootType.ToString();
+
+        return new LootGroup(
+            IndividualLootPieces: [new IndividualLootPiece($"{rolledQuantity} {displayString}", 0)],
+            LootType: lootType,
+            Chance: chancePercentile,
+            PercentileRoll: percentileRow);
     }
 }

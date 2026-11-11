@@ -12,14 +12,14 @@
         <!-- Список таблиц пустой -->
         <Border IsVisible="{Binding !HasTables}"
                 Background="{DynamicResource SystemRegionBrush}"
-                Margin="10" 
-                CornerRadius="8" 
+                Margin="10"
+                CornerRadius="8"
                 Padding="20">
-            <StackPanel HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
                         Spacing="10">
                 <TextBlock Text="{localization:Localize LootTablesEmptyToolTip}"
-                           FontSize="18" 
+                           FontSize="18"
                            FontWeight="SemiBold"
                            HorizontalAlignment="Center" />
                 <TextBlock Text="{localization:Localize LootTableEmptyLoadHelp}"
@@ -28,7 +28,7 @@
         </Border>
 
         <!-- Таблицы успешно загружены -->
-        <Grid IsVisible="{Binding HasTables}" 
+        <Grid IsVisible="{Binding HasTables}"
               ColumnDefinitions="2*, 1*"
               Margin="5">
 
@@ -36,9 +36,9 @@
             <Border Grid.Column="0"
                     Background="{DynamicResource SystemRegionBrush}"
                     BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
-                    BorderThickness="1" 
-                    CornerRadius="8" 
-                    Padding="15" 
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="15"
                     Margin="0,0,5,0">
                 <Grid RowDefinitions="Auto, *">
                     <TextBlock Grid.Row="0" Text="{localization:Localize LotGenerationResult}"
@@ -46,38 +46,67 @@
                                FontWeight="Bold"
                                Margin="0,0,0,10" />
 
-                    <ScrollViewer Grid.Row="1" 
+                    <ScrollViewer Grid.Row="1"
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Spacing="15">
                             <!-- Заглушка -->
                             <TextBlock Text="{localization:Localize LootGenerationToolTip}"
-                                       IsVisible="{Binding LastGenerationResult, Converter={x:Static ObjectConverters.IsNull}}"
+                                       IsVisible="{Binding IsLootGenerated, Converter={x:Static BoolConverters.Not}}"
                                        Foreground="Gray"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        Margin="0,50,0,0" />
 
                             <!-- Отображение выпавших групп лута -->
-                            <ItemsControl ItemsSource="{Binding LastGenerationResult.Groups}"
-                                          IsVisible="{Binding LastGenerationResult, Converter={x:Static ObjectConverters.IsNotNull}}">
+                            <ItemsControl ItemsSource="{Binding GeneratedGroups}"
+                                          IsVisible="{Binding IsLootGenerated}">
                                 <ItemsControl.ItemTemplate>
-                                    <DataTemplate x:DataType="models:LootGroup">
+                                    <DataTemplate x:DataType="vm:LootGroupViewModel">
                                         <Border Background="{DynamicResource SystemControlTransientBackgroundBrush}"
-                                                CornerRadius="6" Padding="10" Margin="0,0,0,8">
-                                            <ItemsControl ItemsSource="{Binding ExtractedLoot}">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate x:DataType="models:GeneratedLootItem">
-                                                        <Grid ColumnDefinitions="*, Auto" Margin="0,2">
-                                                            <TextBlock Grid.Column="0"
-                                                                       Text="{Binding LootType}"
-                                                                       FontWeight="Medium" FontSize="14" />
-                                                            <TextBlock Grid.Column="1"
-                                                                       Text="{Binding RolledQuantity, StringFormat='x{0}'}"
-                                                                       FontWeight="Bold" />
-                                                        </Grid>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
+                                                CornerRadius="6"
+                                                Padding="12,8"
+                                                Margin="0,0,0,6">
+                                            <Grid RowDefinitions="Auto, Auto">
+
+                                                <!-- Шапка (Доступна всегда, при клике сворачивает/разворачивает) -->
+                                                <Button Grid.Row="0"
+                                                        Background="Transparent"
+                                                        BorderBrush="Transparent"
+                                                        HorizontalAlignment="Stretch"
+                                                        HorizontalContentAlignment="Left"
+                                                        Padding="0"
+                                                        Command="{Binding ToggleExpandCommand}">
+                                                    <Grid ColumnDefinitions="*, Auto">
+                                                        <TextBlock Grid.Column="0"
+                                                                   Text="{Binding ShortDescription}"
+                                                                   FontSize="14"
+                                                                   FontWeight="Medium"
+                                                                   TextWrapping="Wrap" />
+                                                        <!-- Стрелочка-индикатор состояния -->
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{Binding IsExpanded, Converter={x:Static BoolConverters.Not}, ConverterParameter='▼', FallbackValue='▲'}"
+                                                                   Foreground="Gray"
+                                                                   Margin="5,0,0,0" />
+                                                    </Grid>
+                                                </Button>
+
+                                                <!-- Развернутый вид (Отображается только если IsExpanded = True) -->
+                                                <StackPanel Grid.Row="1"
+                                                            Margin="0,8,0,0"
+                                                            Spacing="4"
+                                                            IsVisible="{Binding IsExpanded}">
+
+                                                    <!-- Результаты бросков шанса -->
+                                                    <TextBlock Text="{Binding RollInfo}"
+                                                               FontSize="12"
+                                                               Foreground="Gray" />
+
+                                                    <!-- Полное описание предметов -->
+                                                    <TextBlock Text="{Binding FullDescription}"
+                                                               FontSize="13"
+                                                               TextWrapping="Wrap" />
+                                                </StackPanel>
+                                            </Grid>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -92,8 +121,8 @@
                     Background="{DynamicResource SystemRegionBrush}"
                     BorderBrush="{DynamicResource SystemControlSameAccentBorderBrush}"
                     BorderThickness="1"
-                    CornerRadius="8" 
-                    Padding="10" 
+                    CornerRadius="8"
+                    Padding="10"
                     Margin="5,0,0,0">
                 <Grid RowDefinitions="Auto, Auto, *">
                     <Button Grid.Column="0"
@@ -103,23 +132,23 @@
                             FontSize="14"
                             Command="{Binding RollLootCommand}"
                             IsEnabled="{Binding SelectedTable, Converter={x:Static ObjectConverters.IsNotNull}}" />
-                    <TextBlock Grid.Row="1" 
+                    <TextBlock Grid.Row="1"
                                Text="{localization:Localize AvailableLootTables}"
-                               FontSize="16" 
+                               FontSize="16"
                                FontWeight="SemiBold"
                                Margin="5,0,0,10" />
 
-                    <ListBox Grid.Row="2" 
+                    <ListBox Grid.Row="2"
                              ItemsSource="{Binding AvailableTables}"
-                             SelectedItem="{Binding SelectedTable}" 
+                             SelectedItem="{Binding SelectedTable}"
                              Background="Transparent">
                         <ListBox.ItemTemplate>
                             <DataTemplate x:DataType="models:TreasureTableInfo">
                                 <Grid ColumnDefinitions="*, Auto"
                                       Margin="0,2">
                                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Name}" 
-                                                   FontSize="14" 
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontSize="14"
                                                    FontWeight="SemiBold" />
                                         <TextBlock Text="{Binding AverageValue}"
                                                    FontSize="11"

@@ -2,21 +2,15 @@ using Utils.LootTables.TreasureModels;
 
 namespace Utils.LootTables.Services.Processors;
 
-public class JewelleryLootProcessor : ILootProcessor
+internal class JewelleryLootProcessor : BaseLootProcessor
 {
-    private readonly Random _random;
-
-    public JewelleryLootProcessor(Random? random = null)
+    public JewelleryLootProcessor(Random? random = null) : base(random)
     {
-        _random = random ?? new Random();
     }
 
-    public bool CanProcess(LootType lootType)
-    {
-        return lootType == LootType.Jewellery;
-    }
+    protected override LootType LootType => LootType.Jewellery;
 
-    public LootGroup Process(LootType lootType, int rolledQuantity, int chancePercentile, int percentileRow)
+    protected override List<IndividualLootPiece> GetIndividualPieces(LootType lootType, int rolledQuantity)
     {
         var results = new List<IndividualLootPiece>();
 
@@ -28,11 +22,6 @@ public class JewelleryLootProcessor : ILootProcessor
             results.Add(new IndividualLootPiece($"{value}gp", value));
         }
 
-        return new LootGroup(
-            IndividualLootPieces: results,
-            LootType: lootType,
-            Chance: chancePercentile,
-            PercentileRoll: percentileRow
-        );
+        return results;
     }
 }

@@ -81,13 +81,13 @@ public class SpellFilterViewModel : ViewModelBase
     private void ExecuteApplyFilter()
     {
         var filter = GetFilter();
-
         _onApplyFilter?.Invoke(filter);
     }
 
     private void ExecuteResetFilter()
     {
         ResetToDefaults();
+        ExecuteApplyFilter();
     }
 
     private SpellFilterDto GetFilter()

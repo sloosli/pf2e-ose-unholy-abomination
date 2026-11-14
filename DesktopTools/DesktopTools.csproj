@@ -11,12 +11,8 @@
         <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>
         <PublishTrimmed>true</PublishTrimmed>
+        <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Folder Include="Models\"/>
-        <AvaloniaResource Include="Assets\**"/>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.0.10"/>
@@ -31,7 +27,28 @@
     <ItemGroup>
         <ProjectReference Include="..\Utils\Utils.csproj"/>
     </ItemGroup>
+
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**"/>
+      <EmbeddedResource Update="Resources\LocalizationStrings.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>LocalizationStrings.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\LocalizationStrings.en-US.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>LocalizationStrings.en-US.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\LocalizationStrings.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>LocalizationStrings.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\LocalizationStrings.en-US.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>LocalizationStrings.en-US.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 </Project>

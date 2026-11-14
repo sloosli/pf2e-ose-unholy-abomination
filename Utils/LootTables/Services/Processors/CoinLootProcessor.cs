@@ -1,3 +1,4 @@
+using Utils.LootTables.Interfaces;
 using Utils.LootTables.TreasureModels;
 
 namespace Utils.LootTables.Services.Processors;

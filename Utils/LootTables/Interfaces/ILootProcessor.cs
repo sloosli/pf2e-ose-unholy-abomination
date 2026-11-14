@@ -1,6 +1,6 @@
 using Utils.LootTables.TreasureModels;
 
-namespace Utils.LootTables.Services.Processors;
+namespace Utils.LootTables.Interfaces;
 
 public interface ILootProcessor
 {

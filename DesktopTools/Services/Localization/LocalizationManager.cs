@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Text.Json;
-using Avalonia.Platform;
+using DesktopTools.Resources;
 
 namespace DesktopTools.Services.Localization;
 
@@ -12,24 +9,17 @@ internal sealed class LocalizationManager : INotifyPropertyChanged
 {
     public static LocalizationManager Instance { get; } = new();
 
-    private Dictionary<string, string> _currentTranslations = new();
-    private CultureInfo _currentCulture = new("ru-RU");
-
-    public string this[string key] => _currentTranslations.TryGetValue(key, out var translation)
-        ? translation
-        : $"%%%{key}%%%";
+    public string this[string key] => LocalizationStrings.ResourceManager.GetString(key, LocalizationStrings.Culture) ?? $"%%%{key}%%%";
 
     public CultureInfo CurrentCulture
     {
-        get => _currentCulture;
+        get => LocalizationStrings.Culture;
         set
         {
-            if (Equals(_currentCulture, value))
+            if (Equals(LocalizationStrings.Culture, value))
                 return;
 
-            _currentCulture = value;
-
-            LoadCulture(_currentCulture);
+            LocalizationStrings.Culture = value;
 
             OnPropertyChanged("Item");
         }
@@ -39,7 +29,7 @@ internal sealed class LocalizationManager : INotifyPropertyChanged
 
     private LocalizationManager()
     {
-        LoadCulture(_currentCulture);
+        LocalizationStrings.Culture = new CultureInfo("ru-RU");
     }
 
     public string GetByEnum<T>(T key) where T : Enum
@@ -50,28 +40,5 @@ internal sealed class LocalizationManager : INotifyPropertyChanged
     private void OnPropertyChanged(string propertyName = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private void LoadCulture(CultureInfo culture)
-    {
-        try
-        {
-            var assetUri = new Uri($"avares://DesktopTools/Assets/Lang/{culture.Name}.json");
-
-            using var stream = AssetLoader.Open(assetUri);
-            using var reader = new StreamReader(stream);
-            var jsonContent = reader.ReadToEnd();
-
-            var deserialized = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonContent);
-
-            if (deserialized != null)
-            {
-                _currentTranslations = deserialized;
-            }
-        }
-        catch (Exception)
-        {
-            _currentTranslations = new Dictionary<string, string>();
-        }
     }
 }

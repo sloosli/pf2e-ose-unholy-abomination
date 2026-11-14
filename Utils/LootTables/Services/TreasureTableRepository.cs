@@ -27,7 +27,7 @@ internal class TreasureTableRepository : ITreasureTableRepository
                     throw new FileNotFoundException($"Файл таблицы сокровищ не найден по пути: {path}");
 
                 var jsonContent = File.ReadAllText(path);
-                var fileDto = JsonSerializer.Deserialize<TreasureFileDto>(jsonContent, _jsonOptions);
+                var fileDto = JsonSerializer.Deserialize(jsonContent, TreasureJsonContext.Default.TreasureFileDto);
 
                 if (fileDto?.Tables == null)
                     continue;

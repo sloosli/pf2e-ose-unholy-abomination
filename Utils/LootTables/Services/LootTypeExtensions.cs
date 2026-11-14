@@ -18,7 +18,7 @@ public static class LootTypeExtensions
             "pp" => LootType.Pp,
             "gems" => LootType.Gems,
             "jewellery" or "pieces of jewellery" => LootType.Jewellery,
-            "scrolls" or "magic scrolls" => LootType.Scrolls,
+            "scroll" or "scrolls" or "magic scrolls" => LootType.Scrolls,
             _ => LootType.Other
         };
     }

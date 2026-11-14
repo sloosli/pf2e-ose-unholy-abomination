@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="MainTabHeader" xml:space="preserve">
+    <value>Main</value>
+  </data>
+    <data name="ConfigManagementTitle" xml:space="preserve">
+    <value>Configuration Files Management</value>
+  </data>
+    <data name="LoadLootFilesButton" xml:space="preserve">
+    <value>Load Treasure Table Files (.json)</value>
+  </data>
+    <data name="LoadedFilesTitle" xml:space="preserve">
+    <value>Loaded Files:</value>
+  </data>
+    <data name="EmptyPageText" xml:space="preserve">
+    <value>This page is currently empty</value>
+  </data>
+    <data name="SpellsTabHeader" xml:space="preserve">
+    <value>Spells</value>
+  </data>
+    <data name="LootGeneratorTabHeader" xml:space="preserve">
+    <value>Loot Generator</value>
+  </data>
+    <data name="FileManagerWindow" xml:space="preserve">
+    <value>Choose files</value>
+  </data>
+    <data name="JsonFiles" xml:space="preserve">
+    <value>JSON files</value>
+  </data>
+    <data name="ResetButton" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+    <data name="ApplyButton" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+    <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+    <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+    <data name="Rarity" xml:space="preserve">
+    <value>Rarity</value>
+  </data>
+    <data name="SpellFilter" xml:space="preserve">
+    <value>Spell filter</value>
+  </data>
+    <data name="SpellRank" xml:space="preserve">
+    <value>Spell rank</value>
+  </data>
+    <data name="SpellTradition" xml:space="preserve">
+    <value>Tradition</value>
+  </data>
+    <data name="SpellDefence" xml:space="preserve">
+    <value>Defence</value>
+  </data>
+    <data name="SpellCount" xml:space="preserve">
+    <value>Spells found</value>
+  </data>
+    <data name="GetRandomSpellButton" xml:space="preserve">
+    <value>Choose random spell</value>
+  </data>
+    <data name="GetRandomSpellToolTip" xml:space="preserve">
+    <value>Click the button above to chose a random spell from the list</value>
+  </data>
+    <data name="LootTablesEmptyToolTip" xml:space="preserve">
+    <value>The table list is empty</value>
+  </data>
+    <data name="LootTableEmptyLoadHelp" xml:space="preserve">
+    <value>Go to the 'Main' tab and select treasure table JSON files.</value>
+  </data>
+    <data name="LotGenerationResult" xml:space="preserve">
+    <value>Treasure Generation Results</value>
+  </data>
+    <data name="LootGenerationToolTip" xml:space="preserve">
+    <value>Select a table on the right to roll the treasure dice.</value>
+  </data>
+    <data name="LootGenerationButton" xml:space="preserve">
+    <value>Roll on Table</value>
+  </data>
+    <data name="AvailableLootTables" xml:space="preserve">
+    <value>Available Tables</value>
+  </data>
+    <data name="RollInfoFormat" xml:space="preserve">
+    <value>Chance: {0}% | Rolled: {1}</value>
+  </data>
+    <data name="OtherTabHeader" xml:space="preserve">
+    <value>Other</value>
+  </data>
+    <data name="ReincarnationTitle" xml:space="preserve">
+    <value>Reincarnation: New Race Selection</value>
+  </data>
+    <data name="RollRaceButton" xml:space="preserve">
+    <value>Roll New Race</value>
+  </data>
+    <data name="RaceResultLabel" xml:space="preserve">
+    <value>Reincarnation Result</value>
+  </data>
+    <data name="RaceNameLabel" xml:space="preserve">
+    <value>Race</value>
+  </data>
+    <data name="Cp" xml:space="preserve">
+    <value>Cp</value>
+  </data>
+    <data name="Sp" xml:space="preserve">
+    <value>Sp</value>
+  </data>
+    <data name="Ep" xml:space="preserve">
+    <value>Em</value>
+  </data>
+    <data name="Gp" xml:space="preserve">
+    <value>Gp</value>
+  </data>
+    <data name="Pp" xml:space="preserve">
+    <value>Pp</value>
+  </data>
+    <data name="Gems" xml:space="preserve">
+    <value>Gems</value>
+  </data>
+    <data name="Jewellery" xml:space="preserve">
+    <value>Jewellery</value>
+  </data>
+    <data name="Scrolls" xml:space="preserve">
+    <value>Scrolls</value>
+  </data>
+    <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+</root>

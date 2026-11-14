@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Utils.Common.Enums;
 using Utils.Spells.Models;
 
@@ -51,25 +50,15 @@ public class SpellItemViewModel : ViewModelBase
         set => NotifySetValue(() => DisplayRank, value);
     }
 
-    public SpellItemViewModel(SpellData spell, SpellFilterDto filter)
+    public SpellItemViewModel(SpellDto spell, SpellFilterDto filter)
     {
         Name = spell.Name;
         Summary = spell.Summary;
         Rarity = spell.Rarity;
         Type = spell.Type;
-
-        TraditionsDisplay = spell.Tradition.Length > 0
-            ? string.Join(", ", spell.Tradition)
-            : "Нет";
-
-        DefenseDisplay = spell.Defense.Length > 0
-            ? string.Join(", ", spell.Defense)
-            : string.Empty;
-
-        FilteredHeighten = spell.Heighten
-            .Where(h => h >= filter.MinRank && h <= filter.MaxRank)
-            .ToList();
-
+        TraditionsDisplay = spell.TraditionsDisplay;
+        DefenseDisplay = spell.DefenseDisplay;
+        FilteredHeighten = spell.FilteredHeighten;
         DisplayRank = string.Join(", ", FilteredHeighten);
     }
 

@@ -13,6 +13,7 @@ using DynamicData;
 using ReactiveUI;
 using Utils.LootTables.Interfaces;
 using Utils.MiniTools.Reincarnation;
+using Utils.Spells.Interfaces;
 
 namespace DesktopTools.ViewModels;
 
@@ -29,13 +30,20 @@ public class MainWindowViewModel : ViewModelBase
     public ICommand SelectLootFilesCommand { get; }
     public ICommand SwitchLanguageCommand { get; }
 
-    public MainWindowViewModel() : this(new DesignTreasureGeneratorService(), new ReincarnationService())
+    public MainWindowViewModel() :
+        this(new DesignTreasureGeneratorService(),
+            new DesignSpellFilterContext(),
+            new DesignReincarnationService(),
+            new DesignSpellSelectorService())
     {
     }
 
-    public MainWindowViewModel(ITreasureGeneratorService treasureService, IReincarnationService reincarnationService)
+    public MainWindowViewModel(ITreasureGeneratorService treasureService,
+        ISpellFilterContext spellFilterContext,
+        IReincarnationService reincarnationService,
+        ISpellSelectorService spellSelectorService)
     {
-        SpellsListTabs = new SpellsListViewModel();
+        SpellsListTabs = new SpellsListViewModel(spellFilterContext, spellSelectorService);
 
         _treasureService = treasureService;
 

@@ -2,7 +2,7 @@ using Utils.Common.Enums;
 
 namespace Utils.MiniTools.Reincarnation;
 
-public class ReincarnationService : IReincarnationService
+internal class ReincarnationService : IReincarnationService
 {
     private readonly Random _random;
 

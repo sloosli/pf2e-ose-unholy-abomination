@@ -5,15 +5,16 @@ using System.Reactive.Linq;
 using System.Windows.Input;
 using DynamicData;
 using ReactiveUI;
+using Utils.Spells.Interfaces;
 using Utils.Spells.Models;
-using Utils.Spells.Services;
 
 namespace DesktopTools.ViewModels.Spells;
 
 public class SpellsListViewModel : ViewModelBase
 {
     private readonly Random _rnd = new();
-    private readonly SpellSelectorService _spellSelectorService;
+    private readonly ISpellFilterContext _spellFilterContext;
+    private readonly ISpellSelectorService _spellSelectorService;
 
     public SpellFilterViewModel SpellFilter { get; }
 
@@ -31,9 +32,10 @@ public class SpellsListViewModel : ViewModelBase
 
     public ICommand GetRandomSpellCommand { get; }
 
-    public SpellsListViewModel()
+    public SpellsListViewModel(ISpellFilterContext spellFilterContext, ISpellSelectorService spellSelectorService)
     {
-        _spellSelectorService = SpellSelectorService.Instance;
+        _spellFilterContext = spellFilterContext;
+        _spellSelectorService = spellSelectorService;
         SpellFilter = new SpellFilterViewModel(ApplySpellFilter);
         Spells = [];
 
@@ -46,6 +48,8 @@ public class SpellsListViewModel : ViewModelBase
 
     private void ApplySpellFilter(SpellFilterDto filter)
     {
+        _spellFilterContext.CurrentFilter = filter;
+
         var filteredList = _spellSelectorService.GetSpells(filter);
 
         var itemViewModels = filteredList
